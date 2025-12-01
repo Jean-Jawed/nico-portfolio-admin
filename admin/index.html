@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Portfolio</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Administration</h1>
+                <p>Portfolio Nicolas Khatmi</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Connexion
+                </button>
+                
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Interface -->
+    <div id="adminInterface" class="admin-interface" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <h1><i class="fas fa-user-graduate"></i> Portfolio Admin</h1>
+            </div>
+            
+            <div class="admin-header-right">
+                <button id="publishBtn" class="btn btn-success">
+                    <i class="fas fa-rocket"></i> Publier le site
+                </button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav">
+            <button class="nav-item active" data-section="config">
+                <i class="fas fa-cog"></i> Configuration
+            </button>
+            <button class="nav-item" data-section="profile">
+                <i class="fas fa-user"></i> Profil
+            </button>
+            <button class="nav-item" data-section="homepage">
+                <i class="fas fa-home"></i> Accueil
+            </button>
+            <button class="nav-item" data-section="recherche">
+                <i class="fas fa-search"></i> Recherche
+            </button>
+            <button class="nav-item" data-section="publications">
+                <i class="fas fa-book"></i> Publications
+            </button>
+            <button class="nav-item" data-section="enseignement">
+                <i class="fas fa-chalkboard-teacher"></i> Enseignement
+            </button>
+            <button class="nav-item" data-section="encadrements">
+                <i class="fas fa-users"></i> Encadrements
+            </button>
+            <button class="nav-item" data-section="blog">
+                <i class="fas fa-blog"></i> Blog
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Configuration Section -->
+            <section id="section-config" class="admin-section active">
+                <h2>Configuration du site</h2>
+                
+                <div class="card">
+                    <h3>Pages activées</h3>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableEnseignement">
+                            <span>Activer la page Enseignement</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableEncadrements">
+                            <span>Activer la page Encadrements</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableBlog">
+                            <span>Activer la page Blog</span>
+                        </label>
+                    </div>
+                    <button id="saveConfig" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="section-profile" class="admin-section">
+                <h2>Profil</h2>
+                
+                <div class="card">
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nom">Nom complet *</label>
+                                <input type="text" id="nom" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="titre">Titre *</label>
+                                <input type="text" id="titre" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="baseline">Baseline *</label>
+                            <input type="text" id="baseline" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photoUpload">Photo de profil</label>
+                            <div class="file-upload">
+                                <input type="file" id="photoUpload" accept="image/*">
+                                <div id="photoPreview" class="image-preview"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="profileEmail" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telephone">Téléphone</label>
+                                <input type="tel" id="telephone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bureau">Bureau</label>
+                            <input type="text" id="bureau">
+                        </div>
+                        
+                        <h3>Profils académiques</h3>
+                        
+                        <div class="form-group">
+                            <label for="orcid">ORCID</label>
+                            <input type="url" id="orcid" placeholder="https://orcid.org/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="researchgate">ResearchGate</label>
+                            <input type="url" id="researchgate" placeholder="https://www.researchgate.net/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="googleScholar">Google Scholar</label>
+                            <input type="url" id="googleScholar" placeholder="https://scholar.google.com/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" placeholder="https://www.linkedin.com/...">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer le profil
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Homepage Section -->
+            <section id="section-homepage" class="admin-section">
+                <h2>Page d'accueil</h2>
+                
+                <div class="card">
+                    <form id="homepageForm">
+                        <div class="form-group">
+                            <label for="paragraphe1Titre">Titre du paragraphe 1 *</label>
+                            <input type="text" id="paragraphe1Titre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paragraphe1Texte">Texte du paragraphe 1 *</label>
+                            <textarea id="paragraphe1Texte" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paragraphe2Titre">Titre du paragraphe 2 *</label>
+                            <input type="text" id="paragraphe2Titre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paragraphe2Texte">Texte du paragraphe 2 *</label>
+                            <textarea id="paragraphe2Texte" rows="6" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Recherche Section -->
+            <section id="section-recherche" class="admin-section">
+                <h2>Blocs de recherche</h2>
+                
+                <button id="addRechercheBlock" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus"></i> Ajouter un bloc
+                </button>
+                
+                <div id="rechercheBlocks" class="sortable-list"></div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="section-publications" class="admin-section">
+                <h2>Publications</h2>
+                
+                <button id="addPublication" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus"></i> Ajouter une publication
+                </button>
+                
+                <div id="publicationsList"></div>
+            </section>
+
+            <!-- Enseignement Section -->
+            <section id="section-enseignement" class="admin-section">
+                <h2>Enseignements</h2>
+                
+                <button id="addEnseignement" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus"></i> Ajouter un cours
+                </button>
+                
+                <div id="enseignementList"></div>
+            </section>
+
+            <!-- Encadrements Section -->
+            <section id="section-encadrements" class="admin-section">
+                <h2>Encadrements</h2>
+                
+                <button id="addEncadrement" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus"></i> Ajouter un encadrement
+                </button>
+                
+                <div id="encadrementsList"></div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="section-blog" class="admin-section">
+                <h2>Blog</h2>
+                
+                <button id="addBlogPost" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus"></i> Nouvel article
+                </button>
+                
+                <div id="blogPostsList"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Chargement...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- SortableJS for drag & drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+    <!-- Admin Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/homepage.js"></script>
+    <script src="js/recherche.js"></script>
+    <script src="js/publications.js"></script>
+    <script src="js/enseignement.js"></script>
+    <script src="js/encadrements.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/publish.js"></script>
+    <script src="js/upload.js"></script>
+</body>
+</html>

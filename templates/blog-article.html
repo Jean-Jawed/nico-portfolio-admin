@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titre}} - Blog - {{auteurNom}}</title>
+    <meta name="description" content="{{excerpt}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">{{initiales}}</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
+                <li><a href="/publications.html" class="nav-link">Publications</a></li>
+                {{#enableEnseignement}}
+                <li><a href="/enseignement.html" class="nav-link">Enseignement</a></li>
+                {{/enableEnseignement}}
+                <li><a href="/blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        {{#imageCouverture}}
+        <div class="article-header-image">
+            <img src="{{imageCouverture}}" alt="{{titre}}" loading="eager">
+        </div>
+        {{/imageCouverture}}
+        
+        <div class="container">
+            <div class="article-header-content">
+                <nav class="breadcrumb">
+                    <a href="/">Accueil</a>
+                    <span>/</span>
+                    <a href="/blog.html">Blog</a>
+                    <span>/</span>
+                    <span>{{titre}}</span>
+                </nav>
+                
+                <h1 class="article-title">{{titre}}</h1>
+                
+                <div class="article-meta">
+                    <time datetime="{{dateISO}}">{{dateFormatted}}</time>
+                    {{#categories}}
+                    <span class="article-category">{{.}}</span>
+                    {{/categories}}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <div class="container-narrow">
+            <div class="article-body">
+                {{contenuHTML}}
+            </div>
+            
+            <!-- Share -->
+            <div class="article-share">
+                <h3>Partager cet article</h3>
+                <div class="share-buttons">
+                    <a href="https://twitter.com/intent/tweet?text={{titre}}&url={{urlComplete}}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="share-btn share-twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                        Twitter
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlComplete}}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="share-btn share-linkedin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    
+                    <button class="share-btn share-copy" data-url="{{urlComplete}}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                        </svg>
+                        Copier le lien
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Back to Blog -->
+            <div class="article-back">
+                <a href="/blog.html" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Retour au blog
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/recherche.html">Recherche</a></li>
+                        <li><a href="/publications.html">Publications</a></li>
+                        {{#enableEnseignement}}
+                        <li><a href="/enseignement.html">Enseignement</a></li>
+                        {{/enableEnseignement}}
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Profils académiques</h4>
+                    <ul class="footer-social">
+                        {{#orcid}}
+                        <li>
+                            <a href="{{orcid}}" target="_blank" rel="noopener noreferrer">
+                                <span>ORCID</span>
+                            </a>
+                        </li>
+                        {{/orcid}}
+                        {{#researchgate}}
+                        <li>
+                            <a href="{{researchgate}}" target="_blank" rel="noopener noreferrer">
+                                <span>ResearchGate</span>
+                            </a>
+                        </li>
+                        {{/researchgate}}
+                        {{#googleScholar}}
+                        <li>
+                            <a href="{{googleScholar}}" target="_blank" rel="noopener noreferrer">
+                                <span>Google Scholar</span>
+                            </a>
+                        </li>
+                        {{/googleScholar}}
+                        {{#linkedin}}
+                        <li>
+                            <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        {{/linkedin}}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:{{email}}">{{email}}</a></li>
+                        {{#telephone}}
+                        <li>{{telephone}}</li>
+                        {{/telephone}}
+                        {{#bureau}}
+                        <li>{{bureau}}</li>
+                        {{/bureau}}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{annee}} {{auteurNom}}. Tous droits réservés.</p>
+                <p class="footer-legal">
+                    <a href="/mentions-legales.html">Mentions légales</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+    <script>
+        // Copy URL functionality
+        document.querySelector('.share-copy').addEventListener('click', function() {
+            const url = this.dataset.url;
+            navigator.clipboard.writeText(url).then(() => {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copié !';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

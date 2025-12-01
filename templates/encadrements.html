@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encadrements - {{nom}}</title>
+    <meta name="description" content="Encadrements de thèses et mémoires de {{nom}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">{{initiales}}</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
+                <li><a href="/publications.html" class="nav-link">Publications</a></li>
+                {{#enableEnseignement}}
+                <li><a href="/enseignement.html" class="nav-link">Enseignement</a></li>
+                {{/enableEnseignement}}
+                {{#enableEncadrements}}
+                <li><a href="/encadrements.html" class="nav-link active">Encadrements</a></li>
+                {{/enableEncadrements}}
+                {{#enableBlog}}
+                <li><a href="/blog.html" class="nav-link">Blog</a></li>
+                {{/enableBlog}}
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Encadrements</h1>
+            <p class="page-subtitle">Direction de thèses et mémoires</p>
+        </div>
+        <div class="page-header-shape"></div>
+    </header>
+
+    <!-- Supervision Section -->
+    <section class="supervision-section">
+        <div class="container">
+            {{#hasTheses}}
+            <div class="supervision-category" data-animate="fade-in">
+                <h2 class="section-title">Thèses</h2>
+                <div class="supervision-list">
+                    {{#theses}}
+                    <article class="supervision-card">
+                        <div class="supervision-header">
+                            <h3 class="supervision-title">{{titre}}</h3>
+                            <span class="supervision-status supervision-status-{{statutClass}}">{{statut}}</span>
+                        </div>
+                        <p class="supervision-student"><strong>Doctorant·e :</strong> {{etudiant}}</p>
+                        <p class="supervision-year"><strong>Année :</strong> {{annee}}</p>
+                        {{#description}}
+                        <p class="supervision-description">{{description}}</p>
+                        {{/description}}
+                    </article>
+                    {{/theses}}
+                </div>
+            </div>
+            {{/hasTheses}}
+            
+            {{#hasMemoires}}
+            <div class="supervision-category" data-animate="fade-in">
+                <h2 class="section-title">Mémoires</h2>
+                <div class="supervision-list">
+                    {{#memoires}}
+                    <article class="supervision-card">
+                        <div class="supervision-header">
+                            <h3 class="supervision-title">{{titre}}</h3>
+                            <span class="supervision-status supervision-status-{{statutClass}}">{{statut}}</span>
+                        </div>
+                        <p class="supervision-student"><strong>Étudiant·e :</strong> {{etudiant}}</p>
+                        <p class="supervision-year"><strong>Année :</strong> {{annee}}</p>
+                        {{#description}}
+                        <p class="supervision-description">{{description}}</p>
+                        {{/description}}
+                    </article>
+                    {{/memoires}}
+                </div>
+            </div>
+            {{/hasMemoires}}
+            
+            {{^hasTheses}}
+            {{^hasMemoires}}
+            <div class="empty-state" data-animate="fade-in">
+                <p>Aucun encadrement pour le moment.</p>
+            </div>
+            {{/hasMemoires}}
+            {{/hasTheses}}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/recherche.html">Recherche</a></li>
+                        <li><a href="/publications.html">Publications</a></li>
+                        {{#enableEnseignement}}
+                        <li><a href="/enseignement.html">Enseignement</a></li>
+                        {{/enableEnseignement}}
+                        {{#enableEncadrements}}
+                        <li><a href="/encadrements.html">Encadrements</a></li>
+                        {{/enableEncadrements}}
+                        {{#enableBlog}}
+                        <li><a href="/blog.html">Blog</a></li>
+                        {{/enableBlog}}
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Profils académiques</h4>
+                    <ul class="footer-social">
+                        {{#orcid}}
+                        <li>
+                            <a href="{{orcid}}" target="_blank" rel="noopener noreferrer">
+                                <span>ORCID</span>
+                            </a>
+                        </li>
+                        {{/orcid}}
+                        {{#researchgate}}
+                        <li>
+                            <a href="{{researchgate}}" target="_blank" rel="noopener noreferrer">
+                                <span>ResearchGate</span>
+                            </a>
+                        </li>
+                        {{/researchgate}}
+                        {{#googleScholar}}
+                        <li>
+                            <a href="{{googleScholar}}" target="_blank" rel="noopener noreferrer">
+                                <span>Google Scholar</span>
+                            </a>
+                        </li>
+                        {{/googleScholar}}
+                        {{#linkedin}}
+                        <li>
+                            <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        {{/linkedin}}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <p>&copy; {{annee}} {{nom}}. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>

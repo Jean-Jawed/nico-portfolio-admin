@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{nom}} - {{titre}}</title>
+    <meta name="description" content="{{baseline}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">{{initiales}}</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">Accueil</a></li>
+                <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
+                <li><a href="/publications.html" class="nav-link">Publications</a></li>
+                {{#enableEnseignement}}
+                <li><a href="/enseignement.html" class="nav-link">Enseignement</a></li>
+                {{/enableEnseignement}}
+                {{#enableEncadrements}}
+                <li><a href="/encadrements.html" class="nav-link">Encadrements</a></li>
+                {{/enableEncadrements}}
+                {{#enableBlog}}
+                <li><a href="/blog.html" class="nav-link">Blog</a></li>
+                {{/enableBlog}}
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">{{nom}}</h1>
+                <p class="hero-subtitle">{{titre}}</p>
+                <p class="hero-baseline">{{baseline}}</p>
+            </div>
+            
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <img src="{{photo}}" alt="{{nom}}" loading="eager">
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 5V15M10 15L5 10M10 15L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-grid">
+                <article class="about-block" data-animate="fade-in">
+                    <h2 class="about-title">{{paragraphe1Titre}}</h2>
+                    <div class="about-content">
+                        {{paragraphe1Texte}}
+                    </div>
+                </article>
+                
+                <article class="about-block" data-animate="fade-in">
+                    <h2 class="about-title">{{paragraphe2Titre}}</h2>
+                    <div class="about-content">
+                        {{paragraphe2Texte}}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Cards -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-grid">
+                <a href="/recherche.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Recherche</h3>
+                    <p>Découvrez mes travaux et axes de recherche</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+                
+                <a href="/publications.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3>Publications</h3>
+                    <p>Consultez mes articles et communications</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+                
+                {{#enableEnseignement}}
+                <a href="/enseignement.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                        </svg>
+                    </div>
+                    <h3>Enseignement</h3>
+                    <p>Mes cours universitaires</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+                {{/enableEnseignement}}
+                
+                {{#enableEncadrements}}
+                <a href="/encadrements.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Encadrements</h3>
+                    <p>Direction de thèses et mémoires</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+                {{/enableEncadrements}}
+                
+                {{#enableBlog}}
+                <a href="/blog.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                    </div>
+                    <h3>Blog</h3>
+                    <p>Réflexions et actualités scientifiques</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+                {{/enableBlog}}
+                
+                <a href="/contact.html" class="cta-card" data-animate="slide-up">
+                    <div class="cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Contact</h3>
+                    <p>Me contacter ou me retrouver en ligne</p>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/recherche.html">Recherche</a></li>
+                        <li><a href="/publications.html">Publications</a></li>
+                        {{#enableEnseignement}}
+                        <li><a href="/enseignement.html">Enseignement</a></li>
+                        {{/enableEnseignement}}
+                        {{#enableEncadrements}}
+                        <li><a href="/encadrements.html">Encadrements</a></li>
+                        {{/enableEncadrements}}
+                        {{#enableBlog}}
+                        <li><a href="/blog.html">Blog</a></li>
+                        {{/enableBlog}}
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Profils académiques</h4>
+                    <ul class="footer-social">
+                        {{#orcid}}
+                        <li>
+                            <a href="{{orcid}}" target="_blank" rel="noopener noreferrer">
+                                <span>ORCID</span>
+                            </a>
+                        </li>
+                        {{/orcid}}
+                        {{#researchgate}}
+                        <li>
+                            <a href="{{researchgate}}" target="_blank" rel="noopener noreferrer">
+                                <span>ResearchGate</span>
+                            </a>
+                        </li>
+                        {{/researchgate}}
+                        {{#googleScholar}}
+                        <li>
+                            <a href="{{googleScholar}}" target="_blank" rel="noopener noreferrer">
+                                <span>Google Scholar</span>
+                            </a>
+                        </li>
+                        {{/googleScholar}}
+                        {{#linkedin}}
+                        <li>
+                            <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        {{/linkedin}}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:{{email}}">{{email}}</a></li>
+                        {{#telephone}}
+                        <li>{{telephone}}</li>
+                        {{/telephone}}
+                        {{#bureau}}
+                        <li>{{bureau}}</li>
+                        {{/bureau}}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{annee}} {{nom}}. Tous droits réservés.</p>
+                <p class="footer-legal">
+                    <a href="/mentions-legales.html">Mentions légales</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>

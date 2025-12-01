@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - {{nom}}</title>
+    <meta name="description" content="Publications scientifiques de {{nom}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">{{initiales}}</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
+                <li><a href="/publications.html" class="nav-link active">Publications</a></li>
+                {{#enableEnseignement}}
+                <li><a href="/enseignement.html" class="nav-link">Enseignement</a></li>
+                {{/enableEnseignement}}
+                {{#enableEncadrements}}
+                <li><a href="/encadrements.html" class="nav-link">Encadrements</a></li>
+                {{/enableEncadrements}}
+                {{#enableBlog}}
+                <li><a href="/blog.html" class="nav-link">Blog</a></li>
+                {{/enableBlog}}
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Publications</h1>
+            <p class="page-subtitle">Articles, chapitres d'ouvrages et communications</p>
+        </div>
+        <div class="page-header-shape"></div>
+    </header>
+
+    <!-- Publications Tools -->
+    <section class="publications-tools">
+        <div class="container">
+            <div class="publications-controls">
+                <div class="search-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" id="searchPublications" placeholder="Rechercher dans les publications...">
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="list">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+                        </svg>
+                    </button>
+                    <button class="view-btn" data-view="grid">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Content -->
+    <section class="publications-section">
+        <div class="container">
+            <div class="publications-layout">
+                <!-- Sidebar Filters -->
+                <aside class="publications-sidebar">
+                    <div class="filter-group">
+                        <h3>Type</h3>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="article" checked>
+                                <span>Articles</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="chapitre" checked>
+                                <span>Chapitres</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="communication" checked>
+                                <span>Communications</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Année</h3>
+                        <div class="filter-options" id="yearFilters">
+                            <!-- Généré dynamiquement par JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Thématiques</h3>
+                        <div class="filter-options" id="themeFilters">
+                            <!-- Généré dynamiquement par JS -->
+                        </div>
+                    </div>
+                    
+                    <button class="filter-reset">Réinitialiser les filtres</button>
+                </aside>
+
+                <!-- Publications List -->
+                <div class="publications-main">
+                    <div class="publications-count">
+                        <span id="resultsCount">{{totalPublications}}</span> publication(s)
+                    </div>
+                    
+                    <div class="publications-list" id="publicationsList">
+                        {{#publications}}
+                        <article class="publication-card" 
+                                 data-type="{{type}}" 
+                                 data-year="{{annee}}" 
+                                 data-themes="{{thematiquesString}}">
+                            <div class="publication-header">
+                                <span class="publication-type publication-type-{{type}}">{{typeLabel}}</span>
+                                <span class="publication-year">{{annee}}</span>
+                            </div>
+                            
+                            <h3 class="publication-title">{{titre}}</h3>
+                            
+                            <p class="publication-authors">{{auteurs}}</p>
+                            
+                            {{#descriptionRapide}}
+                            <p class="publication-quick-desc">{{descriptionRapide}}</p>
+                            {{/descriptionRapide}}
+                            
+                            {{#resume}}
+                            <div class="publication-abstract">
+                                <h4>Résumé</h4>
+                                <p>{{resume}}</p>
+                            </div>
+                            {{/resume}}
+                            
+                            {{#thematiques}}
+                            <div class="publication-tags">
+                                {{#tags}}
+                                <span class="tag">{{.}}</span>
+                                {{/tags}}
+                            </div>
+                            {{/thematiques}}
+                            
+                            <div class="publication-actions">
+                                {{#pdfPath}}
+                                <a href="{{pdfPath}}" class="btn btn-primary" target="_blank">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    PDF
+                                </a>
+                                {{/pdfPath}}
+                                
+                                {{#doi}}
+                                <a href="https://doi.org/{{doi}}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+                                        <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                                    </svg>
+                                    DOI
+                                </a>
+                                {{/doi}}
+                                
+                                {{#lienEditeur}}
+                                <a href="{{lienEditeur}}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                        <polyline points="15 3 21 3 21 9"/>
+                                        <line x1="10" y1="14" x2="21" y2="3"/>
+                                    </svg>
+                                    Éditeur
+                                </a>
+                                {{/lienEditeur}}
+                                
+                                <button class="btn btn-cite" data-citation="{{citation}}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                    </svg>
+                                    Citer
+                                </button>
+                            </div>
+                        </article>
+                        {{/publications}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Modal -->
+    <div class="modal" id="citationModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <h3>Citation</h3>
+            <div class="citation-text" id="citationText"></div>
+            <button class="btn btn-primary" id="copyCitation">Copier la citation</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/recherche.html">Recherche</a></li>
+                        <li><a href="/publications.html">Publications</a></li>
+                        {{#enableEnseignement}}
+                        <li><a href="/enseignement.html">Enseignement</a></li>
+                        {{/enableEnseignement}}
+                        {{#enableEncadrements}}
+                        <li><a href="/encadrements.html">Encadrements</a></li>
+                        {{/enableEncadrements}}
+                        {{#enableBlog}}
+                        <li><a href="/blog.html">Blog</a></li>
+                        {{/enableBlog}}
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Profils académiques</h4>
+                    <ul class="footer-social">
+                        {{#orcid}}
+                        <li>
+                            <a href="{{orcid}}" target="_blank" rel="noopener noreferrer">
+                                <span>ORCID</span>
+                            </a>
+                        </li>
+                        {{/orcid}}
+                        {{#researchgate}}
+                        <li>
+                            <a href="{{researchgate}}" target="_blank" rel="noopener noreferrer">
+                                <span>ResearchGate</span>
+                            </a>
+                        </li>
+                        {{/researchgate}}
+                        {{#googleScholar}}
+                        <li>
+                            <a href="{{googleScholar}}" target="_blank" rel="noopener noreferrer">
+                                <span>Google Scholar</span>
+                            </a>
+                        </li>
+                        {{/googleScholar}}
+                        {{#linkedin}}
+                        <li>
+                            <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        {{/linkedin}}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:{{email}}">{{email}}</a></li>
+                        {{#telephone}}
+                        <li>{{telephone}}</li>
+                        {{/telephone}}
+                        {{#bureau}}
+                        <li>{{bureau}}</li>
+                        {{/bureau}}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{annee}} {{nom}}. Tous droits réservés.</p>
+                <p class="footer-legal">
+                    <a href="/mentions-legales.html">Mentions légales</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/filter-publications.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - {{nom}}</title>
+    <meta name="description" content="Contactez {{nom}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">{{initiales}}</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
+                <li><a href="/publications.html" class="nav-link">Publications</a></li>
+                {{#enableEnseignement}}
+                <li><a href="/enseignement.html" class="nav-link">Enseignement</a></li>
+                {{/enableEnseignement}}
+                {{#enableBlog}}
+                <li><a href="/blog.html" class="nav-link">Blog</a></li>
+                {{/enableBlog}}
+                <li><a href="/contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Contact</h1>
+            <p class="page-subtitle">Me contacter ou me retrouver en ligne</p>
+        </div>
+        <div class="page-header-shape"></div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info" data-animate="fade-in">
+                    <h2>Coordonnées</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:{{email}}">{{email}}</a>
+                        </div>
+                    </div>
+                    
+                    {{#telephone}}
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <a href="tel:{{telephone}}">{{telephone}}</a>
+                        </div>
+                    </div>
+                    {{/telephone}}
+                    
+                    {{#bureau}}
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Bureau</h3>
+                            <p>{{bureau}}</p>
+                        </div>
+                    </div>
+                    {{/bureau}}
+                </div>
+
+                <!-- Academic Profiles -->
+                <div class="contact-profiles" data-animate="fade-in">
+                    <h2>Profils académiques</h2>
+                    
+                    <div class="profiles-grid">
+                        {{#orcid}}
+                        <a href="{{orcid}}" class="profile-card" target="_blank" rel="noopener noreferrer">
+                            <div class="profile-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.947-.422-.947-.947 0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-1.016 5.016-4.697 5.016h-4.547V7.416zm1.444 1.303v7.444h3.103c2.681 0 3.253-1.744 3.253-3.722 0-2.494-1.219-3.722-3.253-3.722h-3.103z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>ORCID</h3>
+                                <p>Identifiant de recherche</p>
+                            </div>
+                        </a>
+                        {{/orcid}}
+                        
+                        {{#researchgate}}
+                        <a href="{{researchgate}}" class="profile-card" target="_blank" rel="noopener noreferrer">
+                            <div class="profile-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/>
+                                    <path d="M14.5 9.5h-5v5h5v-5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>ResearchGate</h3>
+                                <p>Réseau de chercheurs</p>
+                            </div>
+                        </a>
+                        {{/researchgate}}
+                        
+                        {{#googleScholar}}
+                        <a href="{{googleScholar}}" class="profile-card" target="_blank" rel="noopener noreferrer">
+                            <div class="profile-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Google Scholar</h3>
+                                <p>Publications et citations</p>
+                            </div>
+                        </a>
+                        {{/googleScholar}}
+                        
+                        {{#linkedin}}
+                        <a href="{{linkedin}}" class="profile-card" target="_blank" rel="noopener noreferrer">
+                            <div class="profile-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>LinkedIn</h3>
+                                <p>Réseau professionnel</p>
+                            </div>
+                        </a>
+                        {{/linkedin}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/recherche.html">Recherche</a></li>
+                        <li><a href="/publications.html">Publications</a></li>
+                        {{#enableEnseignement}}
+                        <li><a href="/enseignement.html">Enseignement</a></li>
+                        {{/enableEnseignement}}
+                        {{#enableBlog}}
+                        <li><a href="/blog.html">Blog</a></li>
+                        {{/enableBlog}}
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Profils académiques</h4>
+                    <ul class="footer-social">
+                        {{#orcid}}
+                        <li>
+                            <a href="{{orcid}}" target="_blank" rel="noopener noreferrer">
+                                <span>ORCID</span>
+                            </a>
+                        </li>
+                        {{/orcid}}
+                        {{#researchgate}}
+                        <li>
+                            <a href="{{researchgate}}" target="_blank" rel="noopener noreferrer">
+                                <span>ResearchGate</span>
+                            </a>
+                        </li>
+                        {{/researchgate}}
+                        {{#googleScholar}}
+                        <li>
+                            <a href="{{googleScholar}}" target="_blank" rel="noopener noreferrer">
+                                <span>Google Scholar</span>
+                            </a>
+                        </li>
+                        {{/googleScholar}}
+                        {{#linkedin}}
+                        <li>
+                            <a href="{{linkedin}}" target="_blank" rel="noopener noreferrer">
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        {{/linkedin}}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:{{email}}">{{email}}</a></li>
+                        {{#telephone}}
+                        <li>{{telephone}}</li>
+                        {{/telephone}}
+                        {{#bureau}}
+                        <li>{{bureau}}</li>
+                        {{/bureau}}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{annee}} {{nom}}. Tous droits réservés.</p>
+                <p class="footer-legal">
+                    <a href="/mentions-legales.html">Mentions légales</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>
