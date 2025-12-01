@@ -4,8 +4,8 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-// TODO: Configurer l'URL du webhook Vercel
-const VERCEL_WEBHOOK_URL = 'VOTRE_WEBHOOK_URL_ICI';
+
+const VERCEL_WEBHOOK_URL = 'https://api.vercel.com/v1/integrations/deploy/prj_H1rANf5vTw4GXRwvnT5mGbEoytKT/dBydSjmHST';
 
 document.getElementById('publishBtn').addEventListener('click', async () => {
   if (!VERCEL_WEBHOOK_URL || VERCEL_WEBHOOK_URL === 'VOTRE_WEBHOOK_URL_ICI') {
@@ -37,16 +37,3 @@ document.getElementById('publishBtn').addEventListener('click', async () => {
     hideLoading();
   }
 });
-
-/**
- * Instructions pour créer le webhook Vercel:
- * 
- * 1. Aller sur https://vercel.com/dashboard
- * 2. Sélectionner votre projet
- * 3. Aller dans Settings → Git
- * 4. Dans "Deploy Hooks", créer un nouveau hook:
- *    - Name: "Admin Publish"
- *    - Branch: main (ou votre branche par défaut)
- * 5. Copier l'URL générée
- * 6. Remplacer VOTRE_WEBHOOK_URL_ICI par cette URL dans ce fichier
- */
