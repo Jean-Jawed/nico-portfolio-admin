@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enseignement - {{nom}}</title>
     <meta name="description" content="Enseignements et encadrements de {{nom}}">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/responsive.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
             <a href="/" class="nav-logo">{{initiales}}</a>
-            
+
             <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            
+
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Accueil</a></li>
                 <li><a href="/recherche.html" class="nav-link">Recherche</a></li>
@@ -59,7 +63,7 @@
     <section class="teaching-section">
         <div class="container">
             <h2 class="section-title">Cours</h2>
-            
+
             {{#hasLicence}}
             <div class="teaching-level" data-animate="fade-in">
                 <h3 class="level-title">Licence</h3>
@@ -80,17 +84,19 @@
                                 {{/annee}}
                             </div>
                         </div>
-                        
+
                         {{#description}}
                         <div class="course-description">
                             {{description}}
                         </div>
                         {{/description}}
-                        
+
                         {{#syllabusPdfPath}}
                         <a href="{{syllabusPdfPath}}" class="btn btn-secondary" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
                             Télécharger le syllabus
                         </a>
@@ -100,7 +106,7 @@
                 </div>
             </div>
             {{/hasLicence}}
-            
+
             {{#hasMaster}}
             <div class="teaching-level" data-animate="fade-in">
                 <h3 class="level-title">Master</h3>
@@ -121,17 +127,19 @@
                                 {{/annee}}
                             </div>
                         </div>
-                        
+
                         {{#description}}
                         <div class="course-description">
                             {{description}}
                         </div>
                         {{/description}}
-                        
+
                         {{#syllabusPdfPath}}
                         <a href="{{syllabusPdfPath}}" class="btn btn-secondary" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
                             Télécharger le syllabus
                         </a>
@@ -141,7 +149,7 @@
                 </div>
             </div>
             {{/hasMaster}}
-            
+
             {{#hasDoctorat}}
             <div class="teaching-level" data-animate="fade-in">
                 <h3 class="level-title">Doctorat</h3>
@@ -162,17 +170,19 @@
                                 {{/annee}}
                             </div>
                         </div>
-                        
+
                         {{#description}}
                         <div class="course-description">
                             {{description}}
                         </div>
                         {{/description}}
-                        
+
                         {{#syllabusPdfPath}}
                         <a href="{{syllabusPdfPath}}" class="btn btn-secondary" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
                             Télécharger le syllabus
                         </a>
@@ -207,7 +217,7 @@
                         <li><a href="/contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Profils académiques</h4>
                     <ul class="footer-social">
@@ -241,7 +251,7 @@
                         {{/linkedin}}
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
@@ -255,7 +265,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; {{annee}} {{nom}}. Tous droits réservés.</p>
                 <p class="footer-legal">
@@ -268,5 +278,8 @@
     <!-- Scripts -->
     <script src="/js/main.js"></script>
     <script src="/js/animations.js"></script>
+    <script
+        src="https://websites-monitoring.vercel.app/tracking.js?siteId=nicolas&key=ad994070c47f87c01b3c7d9e9964e756"></script>
 </body>
+
 </html>
