@@ -34,6 +34,7 @@ const storage = getStorage(app);
 const TEMPLATES_DIR = path.join(__dirname, '../templates');
 const DIST_DIR = path.join(__dirname, '../dist');
 const ADMIN_DIR = path.join(__dirname, '../admin');
+const PUBLIC_DIR = path.join(__dirname, '../public');
 
 /**
  * ═══════════════════════════════════════════════════════════════
@@ -71,6 +72,11 @@ async function build() {
     console.log('🔧 Copie de l\'interface admin...');
     await copyAdmin();
     console.log('   ✓ Admin copié\n');
+
+    // 7. Copier les fichiers publics (favicon, robots.txt, sitemap, etc.)
+    console.log('🌐 Copie des fichiers publics...');
+    await copyPublicFiles();
+    console.log('   ✓ Fichiers publics copiés\n');
 
     console.log('✅ Build terminé avec succès !');
     console.log(`📂 Site généré dans : ${DIST_DIR}`);
@@ -344,8 +350,7 @@ async function generateIndexPage(data, commonData) {
   const template = await fs.readFile(path.join(TEMPLATES_DIR, 'index.html'), 'utf-8');
   
   const pageData = {
-    ...commonData,
-    ...data.homepage
+    ...commonData
   };
 
   const html = Mustache.render(template, pageData);
@@ -359,18 +364,9 @@ async function generateIndexPage(data, commonData) {
 async function generateRecherchePage(data, commonData) {
   const template = await fs.readFile(path.join(TEMPLATES_DIR, 'recherche.html'), 'utf-8');
   
-  // Déterminer le layout de chaque bloc
-  const blocs = data.recherche.map(bloc => {
-    let layout = 'full';
-    if (bloc.image) {
-      layout = Math.random() > 0.5 ? 'left' : 'right';
-    }
-    return { ...bloc, layout };
-  });
-
   const pageData = {
     ...commonData,
-    blocs
+    blocs: data.recherche
   };
 
   const html = Mustache.render(template, pageData);
@@ -384,27 +380,13 @@ async function generateRecherchePage(data, commonData) {
 async function generatePublicationsPage(data, commonData) {
   const template = await fs.readFile(path.join(TEMPLATES_DIR, 'publications.html'), 'utf-8');
   
-  // Préparer les données des publications
-  const publications = data.publications.map(pub => {
-    const typeLabels = {
-      'article': 'Article',
-      'chapitre': 'Chapitre',
-      'communication': 'Communication'
-    };
+  // Ajouter des badges colorés selon le type
+  const publications = data.publications.map(pub => ({
+    ...pub,
+    typeClass: pub.type === 'article' ? 'article' : pub.type === 'chapitre' ? 'chapitre' : 'communication',
+    thematiques: pub.thematiques ? (typeof pub.thematiques === 'string' ? pub.thematiques.split(',') : pub.thematiques) : []
+  }));
 
-    // Citation formatée
-    const citation = `${pub.auteurs} (${pub.annee}). ${pub.titre}.`;
-
-    return {
-      ...pub,
-      typeLabel: typeLabels[pub.type] || pub.type,
-      citation,
-      thematiquesString: pub.thematiques ? pub.thematiques.join(',') : '',
-      tags: pub.thematiques || []
-    };
-  });
-
-  // Trier par année décroissante
   publications.sort((a, b) => b.annee - a.annee);
 
   const pageData = {
@@ -568,7 +550,7 @@ async function generateBlogPages(data, commonData) {
       excerpt,
       dateFormatted: formatDate(date),
       dateISO: date.toISOString(),
-      urlComplete: `https://votre-domaine.com/blog/${article.slug}.html`,
+      urlComplete: `https://nicolaskhatmi.fr/blog/${article.slug}.html`,
       auteurNom: commonData.nom
     };
 
@@ -626,6 +608,22 @@ async function copyAdmin() {
     console.log('   ✓ Interface admin copiée');
   } else {
     console.log('   ⚠️  Dossier admin/ introuvable');
+  }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════
+ * 7. COPIE DES FICHIERS PUBLICS
+ * ═══════════════════════════════════════════════════════════════
+ */
+async function copyPublicFiles() {
+  if (await fs.pathExists(PUBLIC_DIR)) {
+    await fs.copy(PUBLIC_DIR, DIST_DIR, {
+      overwrite: true
+    });
+    console.log('   ✓ Fichiers publics copiés (favicon, robots.txt, sitemap, etc.)');
+  } else {
+    console.log('   ⚠️  Dossier public/ introuvable (optionnel)');
   }
 }
 

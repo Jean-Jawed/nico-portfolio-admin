@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nicolaskhatmi.fr/sitemap.xml
+
